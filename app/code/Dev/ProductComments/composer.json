@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "post-install-cmd": [
+      "[ $COMPOSER_DEV_MODE -eq 1 ] && vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/"
+    ],
+    "post-update-cmd": [
+      "[ $COMPOSER_DEV_MODE -eq 1 ] && vendor/bin/phpcs --config-set installed_paths ../../magento/magento-coding-standard/"
+    ]
+  },
+  "name": "mycompany/sample-module-minimal",
+  "description": "A module that creates a page in the Magento admin area",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "require": {
+    "php": "~5.6.0|7.0.2|7.0.4|~7.0.6"
+  },
+  "autoload": {
+    "files": [ "registration.php" ],
+    "psr-4": {
+      "Dev\\ProductComments\\": ""
+    }
+  }
+}
