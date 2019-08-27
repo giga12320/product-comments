@@ -10,11 +10,11 @@
             ->resize(380)
             ->getUrl(); ?>
         <div class="product-wrapper">
-            <img src="<?= $imageUrl ?>">
+            <img src="<?= $imageUrl ?>"  alt="Product" height="85" width="85">
             <div>
                 <h2><?=$product->getName()?></h2>
                 <p><?= __('Price: %1$', $block->getPriceHelper()->currency($product->getFinalPrice())) ?></p>
-                <a href="<?=$product->getProductUrl()?>" style="text-decoration: none"><button class="action submit primary"><?= __('Enter Product') ?></button></a>
+                <a href="<?=$product->getProductUrl()?>"><button class="action submit primary"><?= __('Enter Product') ?></button></a>
             </div>
         </div>
         <?php

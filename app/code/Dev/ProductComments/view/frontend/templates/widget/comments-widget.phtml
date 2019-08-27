@@ -31,7 +31,7 @@
                     <div class="product details product-item-details">
                         <strong class="product name product-item-name">
                             <a class="product-item-link" href="<?php echo $item->getUrlInStore() ?>">
-                                <?php echo $item->getName() ?>
+                                <?= $item->getName() ?>
                             </a>
                         </strong>
                         <div class="price-box price-final_price" data-role="priceBox" data-product-id="3">
@@ -40,9 +40,7 @@
                                   data-price-type="finalPrice"
                                   class="price-wrapper ">
                                 <span class="price">
-                                    <?php
-                                    echo $block->getFormatedPrice($item->getPrice());
-                                    ?>
+                                    <?=$block->getFormatedPrice($item->getPrice()); ?>
                                 </span>
                             </span>
                         </span>

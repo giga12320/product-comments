@@ -49,7 +49,7 @@ class Comment extends AbstractExtensibleModel implements CommentInterface
      */
     public function getName()
     {
-        return $this->_getData(self::NAME);
+        return $this->getData(self::NAME);
     }
     /**
      * @param string $name
@@ -64,7 +64,7 @@ class Comment extends AbstractExtensibleModel implements CommentInterface
      */
     public function getEmail()
     {
-        return $this->_getData(self::EMAIL);
+        return $this->getData(self::EMAIL);
     }
     /**
      * @param string $email
@@ -79,7 +79,7 @@ class Comment extends AbstractExtensibleModel implements CommentInterface
      */
     public function getComment()
     {
-        return $this->_getData(self::COMMENT);
+        return $this->getData(self::COMMENT);
     }
     /**
      * @param string $comment

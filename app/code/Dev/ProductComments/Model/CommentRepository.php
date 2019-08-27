@@ -1,44 +1,22 @@
 <?php
 namespace Dev\ProductComments\Model;
-use Dev\ProductComments\Api\Data\CommentInterface;
 use Dev\ProductComments\Api\CommentRepositoryInterface;
-use Dev\ProductComments\Model\ResourceModel\Comment\CollectionFactory as CommentCollectionFactory;
-use Dev\ProductComments\Model\CommentFactory;
-
+use Dev\ProductComments\Api\Data\CommentInterface;
+use Dev\ProductComments\Model\ResourceModel\Comment\CollectionFactory;
 class CommentRepository implements CommentRepositoryInterface
 {
-    /**
-     * @var CommentFactory
-     */
-    private $commentFactory;
-    /**
-     * @var CommentCollectionFactory
-     */
-    private $commentCollectionFactory;
-    private $CollectionFactory;
-    /**
-     * CommentRepository constructor.
-     * @param CommentFactory $commentFactory
-     * @param CommentCollectionFactory $commentCollectionFactory
-     */
-    public function __construct(
-        CommentFactory $commentFactory,
-        CommentCollectionFactory $commentCollectionFactory
-    )
+    private $collectionFactory;
+    public function __construct(CollectionFactory $collectionFactory)
     {
-        $this->commentFactory = $commentFactory;
-        $this->commentCollectionFactory = $commentCollectionFactory;
+        $this->collectionFactory = $collectionFactory;
     }
-    /**
-     * @param int $id
-     * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     */
-    public function getById($id)
+    public function getList($productId)
     {
-        $comment = $this->commentFactory->create();
-        $comment->getResource()->load($comment, $id);
-        return $comment;
+        $comment = $this->collectionFactory->create();
+        $collection = $comment
+            ->addFieldToFilter('product_id', $productId)
+            ->getItems();
+        return $collection;
     }
     /**
      * @param CommentInterface $comment
@@ -57,17 +35,9 @@ class CommentRepository implements CommentRepositoryInterface
     {
         $comment->getResource()->delete($comment);
     }
-    /**
-     * @param $productId
-     * @return \Dev\ProductComments\Api\Data\CommentSearchResultInterface|\Magento\Framework\DataObject[]
-     */
-    public function getList($productId)
+
+    public function getById($id)
     {
-        $comment = $this->commentFactory->create();
-        $collection = $comment
-            ->addFieldToFilter('product_id', $productId)
-            ->addFieldToFilter('status', 'approved')
-            ->getItems();
-        return $collection;
+        return NULL;
     }
 }

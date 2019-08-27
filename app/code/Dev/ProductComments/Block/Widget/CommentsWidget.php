@@ -66,6 +66,10 @@ class CommentsWidget extends Template implements BlockInterface
         return $imageUrl;
     }
 
+    /**
+     * @param $price
+     * @return string
+     */
     public function getFormatedPrice($price)
     {
         return $this->priceCurrency->convertAndFormat($price);
