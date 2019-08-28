@@ -1,4 +1,5 @@
 <?php
+
 namespace Dev\ProductComments\Model\ResourceModel\Comment;
 
 use Dev\ProductComments\Model\Comment;
@@ -7,16 +8,18 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
 class Collection extends AbstractCollection
 {
-protected $_idFieldName = 'comment_id';
-protected $_eventPrefix = 'product_comments_collection';
-protected $_eventObject = 'comment_collection';
-/**
-* Define resource model
-*
-* @return void
-*/
-protected function _construct()
+    protected $_idFieldName = 'comment_id';
+    protected $_eventPrefix = 'product_comments_collection';
+    protected $_eventObject = 'comment_collection';
+
+  /**
+  * Define resource model
+  *
+  * @return void
+  */
+
+    protected function _construct()
 {
 $this->_init(Comment::class, ResourceComment::class);
-   }
+ }
 }

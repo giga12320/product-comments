@@ -1,14 +1,29 @@
 <?php
 namespace Dev\ProductComments\Model;
+
 use Dev\ProductComments\Api\CommentRepositoryInterface;
 use Dev\ProductComments\Api\Data\CommentInterface;
 use Dev\ProductComments\Model\ResourceModel\Comment\CollectionFactory;
+
 class CommentRepository implements CommentRepositoryInterface
 {
     private $collectionFactory;
-    public function __construct(CollectionFactory $collectionFactory)
-    {
+    /**
+     * @var CommentFactory
+     */
+    private $commentFactory;
+
+    /**
+     * CommentRepository constructor.
+     * @param CollectionFactory $collectionFactory
+     * @param CommentFactory $commentFactory
+     */
+    public function __construct(
+        CollectionFactory $collectionFactory,
+        \Dev\ProductComments\Model\CommentFactory $commentFactory
+    ) {
         $this->collectionFactory = $collectionFactory;
+        $this->commentFactory = $commentFactory;
     }
     public function getList($productId)
     {
@@ -38,6 +53,8 @@ class CommentRepository implements CommentRepositoryInterface
 
     public function getById($id)
     {
-        return NULL;
+        $comment = $this->commentFactory->create();
+        $comment->getResource()->load($comment, $id);
+        return $comment;
     }
 }

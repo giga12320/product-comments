@@ -31,5 +31,4 @@ interface CommentRepositoryInterface
      * @return \Dev\ProductComments\Api\Data\CommentSearchResultInterface
      */
     public function getList($productId);
-
 }
