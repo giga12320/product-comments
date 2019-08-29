@@ -8,13 +8,14 @@ $productId = (int) $currentProduct->getId();
 $commentsAvailable = $currentProduct->getData('product_comments');
 $comments = $block->getCommentCollection($productId);
 foreach ($comments as $comment) :
+   if($comment->getData('status')==='approved') :
     ?>
 
     <div>
         <h4><?php echo $comment->getData('email') ?></h4>
         <p><?php echo $comment->getData('comment') ?></p>
     </div>
-
+   <?php endif; ?>
 <?php
 endforeach;
 if($commentsAvailable === 'yes') :

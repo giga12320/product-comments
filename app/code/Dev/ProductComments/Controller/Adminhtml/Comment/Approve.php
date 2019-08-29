@@ -34,6 +34,7 @@ class Approve extends Action
     ) {
         $this->filter = $filter;
         $this->collectionFactory = $collectionFactory;
+        $this->commentRepository = $commentRepository;
         parent::__construct($context);
     }
     public function execute()

@@ -9,7 +9,6 @@ use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Message\ManagerInterface;
 use Magento\Framework\Event\ObserverInterface;
 
-
 class SendComment extends Action
 {
     /**
@@ -20,7 +19,6 @@ class SendComment extends Action
      * @var ResourceComment
      */
     private $resourceModel;
-
 
     /**
      * SendComment constructor.
@@ -63,7 +61,7 @@ class SendComment extends Action
                 } catch (\Exception $e) {
                 }
                 $this->messageManager->addSuccessMessage('Comment request has been sent. Wait for admin approve');
-                $this->_eventManager->dispatch('comment_has_sent',['sentEmail'=>$email,'sentComment'=>$comment]);
+                $this->_eventManager->dispatch('comment_has_sent', ['sentEmail'=>$email,'sentComment'=>$comment]);
 
                 $resultRedirect->setUrl($this->_redirect->getRefererUrl());
                 return $resultRedirect;

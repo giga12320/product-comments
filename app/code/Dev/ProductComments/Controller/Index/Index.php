@@ -14,7 +14,6 @@ class Index extends \Magento\Framework\App\Action\Action
     {
         /** @var \Magento\Framework\View\Result\Page $page */
         $page = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        $this->_eventManager->dispatch('send_email',[$this->getRequest()]);
         return $page;
     }
 }
