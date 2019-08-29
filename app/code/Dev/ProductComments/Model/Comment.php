@@ -6,6 +6,9 @@ use Magento\Framework\Model\AbstractModel;
 use Dev\ProductComments\Api\Data\CommentInterface;
 use Magento\Framework\Model\AbstractExtensibleModel;
 
+/**
+ * @method dispatch(string $string, array $array)
+ */
 class Comment extends AbstractExtensibleModel implements CommentInterface
 {
     const CACHE_TAG = 'product_comments';

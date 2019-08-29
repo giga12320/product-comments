@@ -7,6 +7,8 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Message\ManagerInterface;
+use Magento\Framework\Event\ObserverInterface;
+
 
 class SendComment extends Action
 {
@@ -18,6 +20,8 @@ class SendComment extends Action
      * @var ResourceComment
      */
     private $resourceModel;
+
+
     /**
      * SendComment constructor.
      * @param Context $context
@@ -36,16 +40,11 @@ class SendComment extends Action
     public function execute()
     {
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $name = $this->getRequest()->getParam('name');
         $email = $this->getRequest()->getParam('email');
         $comment = $this->getRequest()->getParam('comment');
         $productId =$this->getRequest()->getParam('productId');
         try {
-            if (!\Zend_Validate::is($name, 'NotEmpty')) {
-                $this->messageManager->addErrorMessage('Name must not be empty');
-                $resultRedirect->setUrl($this->_redirect->getRefererUrl());
-                return $resultRedirect;
-            } elseif (!\Zend_Validate::is($comment, 'NotEmpty')) {
+            if (!\Zend_Validate::is($comment, 'NotEmpty')) {
                 $this->messageManager->addErrorMessage('Comment must not be empty');
                 $resultRedirect->setUrl($this->_redirect->getRefererUrl());
                 return $resultRedirect;
@@ -55,7 +54,6 @@ class SendComment extends Action
                 return $resultRedirect;
             } else {
                 $this->commentModel
-                    ->setData('name', $name)
                     ->setData('email', $email)
                     ->setData('comment', $comment)
                     ->setData('status', 'not approved')
@@ -65,6 +63,8 @@ class SendComment extends Action
                 } catch (\Exception $e) {
                 }
                 $this->messageManager->addSuccessMessage('Comment request has been sent. Wait for admin approve');
+                $this->_eventManager->dispatch('comment_has_sent',['sentEmail'=>$email,'sentComment'=>$comment]);
+
                 $resultRedirect->setUrl($this->_redirect->getRefererUrl());
                 return $resultRedirect;
             }
