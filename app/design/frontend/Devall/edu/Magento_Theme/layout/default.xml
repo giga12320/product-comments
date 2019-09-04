@@ -10,5 +10,13 @@
         <referenceBlock name="header" remove="true"/>
         <referenceBlock name="category.product.addto.compare" remove="true"/>
         <referenceBlock name="category.product.addto.wishlist" remove="true"/>
+        <referenceBlock name="footer_links">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="about-us-link">
+                <arguments>
+                    <argument name="label" xsi:type="string">About Us</argument>
+                    <argument name="path" xsi:type="string">https://developers-alliance.com/</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
     </body>
 </page>
