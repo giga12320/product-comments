@@ -10,7 +10,7 @@
             ->resize(380)
             ->getUrl(); ?>
         <div class="product-wrapper">
-            <img src="<?= $imageUrl ?>"  alt="Product" height="85" width="85">
+            <img src="<?= $imageUrl?>"  alt="Product" height="85" width="85">
             <div>
                 <h2><?=$product->getName()?></h2>
                 <p><?= __('Price: %1$', $block->getPriceHelper()->currency($product->getFinalPrice())) ?></p>

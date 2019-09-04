@@ -62,8 +62,7 @@ class CommentsWidget extends Template implements BlockInterface
     }
     public function getItemImage($product)
     {
-        $imageUrl = $this->imageHelper->init($product, 'product_base_image')->getUrl();
-        return $imageUrl;
+        return $this->imageHelper->init($product, 'product_base_image')->getUrl();
     }
 
     /**

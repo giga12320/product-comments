@@ -20,6 +20,7 @@ class Collection extends AbstractCollection
 
     protected function _construct()
 {
-$this->_init(Comment::class, ResourceComment::class);
+    /** @var TYPE_NAME $this */
+    $this->_init(Comment::class, ResourceComment::class);
  }
 }

@@ -39,8 +39,8 @@ class CommentRepository implements CommentRepositoryInterface
      */
     public function save(CommentInterface $comment)
     {
-        $comment->getResource()->save($comment);
-        return $comment;
+
+        return $comment->getResource()->save($comment);
     }
     /**
      * @param CommentInterface $comment
